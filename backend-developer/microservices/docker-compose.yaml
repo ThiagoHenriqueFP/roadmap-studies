@@ -1,4 +1,10 @@
 services:
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
   discovery-server:
     container_name: "eureka"
     build:
@@ -9,6 +15,19 @@ services:
     networks:
       - inter-nodes
 
+  gateway:
+    container_name: "gateway"
+    build:
+      context: gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - inter-nodes
+    depends_on:
+      - discovery-server
+
+
   client-service:
     build:
       context: client-service
@@ -18,7 +37,11 @@ services:
     networks:
       - inter-nodes
     deploy:
-      replicas: 3
+      replicas: 1
+    depends_on:
+      - discovery-server
+      - gateway
+      - rabbitmq
 
   user-service:
     container_name: "user-service"
@@ -31,16 +54,10 @@ services:
       - inter-nodes
     deploy:
       replicas: 1
-
-  gateway:
-    container_name: "gateway"
-    build:
-      context: gateway
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
-    networks:
-      - inter-nodes
+    depends_on:
+      - discovery-server
+      - gateway
+      - rabbitmq
 
 networks:
   inter-nodes:
