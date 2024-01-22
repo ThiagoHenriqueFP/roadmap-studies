@@ -59,6 +59,16 @@ services:
       - gateway
       - rabbitmq
 
+  external-servers:
+    build:
+      context: external-servers
+      dockerfile: Dockerfile
+    ports:
+      - "3000-3099:3000"
+    deploy:
+      replicas: 1
+    networks:
+      - inter-nodes
 networks:
   inter-nodes:
     driver: bridge
