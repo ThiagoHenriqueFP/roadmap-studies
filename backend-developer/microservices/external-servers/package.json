@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "start-prod": "npx ts-node src/server.ts",
     "dev": "npx ts-node-dev --respawn --inspect=4321 src/server.ts"
   },
   "dependencies": {
