@@ -69,6 +69,9 @@ services:
       replicas: 1
     networks:
       - inter-nodes
+    depends_on:
+      - rabbitmq
+
 networks:
   inter-nodes:
     driver: bridge
