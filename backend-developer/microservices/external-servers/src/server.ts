@@ -7,4 +7,4 @@ const app = express();
 
 app.use("/", routes);
 
-app.listen(3000, () => console.log("server running..."));
+app.listen(process.env.PORT, () => console.log("server running..."));

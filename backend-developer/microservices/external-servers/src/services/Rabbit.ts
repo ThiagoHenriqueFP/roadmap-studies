@@ -6,11 +6,17 @@ interface IRequest {
   cpf: String;
 }
 
+const brokerAddress = process.env.BROKER_URL;
+
 (async () => {
   try {
+    await new Promise((promise) => setTimeout(promise, 4000));
     const upReqName = "update-request";
     const upResName = "update-response";
-    const conn = await amqplib.connect("amqp://localhost");
+
+    console.log(`trying to connect to broker.`);
+    const conn = await amqplib.connect("amqp://guest:guest@rabbitmq:5672");
+    console.log("connection aquired");
 
     const qUpRequest = await conn.createChannel();
     const qUpResponse = await conn.createChannel();
@@ -31,11 +37,7 @@ interface IRequest {
         }, Math.random() * 1000);
       }
     });
-
-    // setInterval(() => {
-    //   qUpResponse.sendToQueue(upResName, Buffer.from("iaee"));
-    // }, 1000);
   } catch (error) {
-    if (error instanceof Error) console.log(error.message);
+    if (error instanceof Error) console.log(error.stack);
   }
 })();

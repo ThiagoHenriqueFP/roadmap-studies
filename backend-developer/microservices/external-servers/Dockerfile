@@ -1,10 +1,13 @@
-FROM node:20-alpine3.18
+FROM node:20.11-alpine3.18
 
 EXPOSE 3000
 
-COPY package.json .
-CMD ["npm", "install"]
+COPY package.json package.json
+COPY package-lock.json package-lock.json
+COPY .env .env
 
-COPY src/ .
+RUN yarn
 
-ENTRYPOINT ["npm", "run", "dev"]
+COPY src/ src/
+
+ENTRYPOINT ["yarn", "start-prod"]
