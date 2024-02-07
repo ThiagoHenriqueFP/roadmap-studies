@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitConfig {
-    @Value("${queue.receiver.name}")
+    @Value("${queue.sender.name}")
     private String QUEUE_NAME;
 
     @Bean

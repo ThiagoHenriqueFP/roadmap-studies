@@ -13,9 +13,9 @@ public class DailyUpdateClientScheduler {
         this.producer = producer;
     }
 
-    @Scheduled(cron = "* 1/2 * * * *")
+    @Scheduled(cron = "0 * * * * *")
     private void dailyUpdateClientScheduler() {
-        producer.send(String.valueOf(System.currentTimeMillis()));
+        producer.send("{\"cpf\": \"01797501437\"}");
     }
 
 }

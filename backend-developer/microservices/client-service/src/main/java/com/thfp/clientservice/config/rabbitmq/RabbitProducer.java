@@ -19,6 +19,6 @@ public class RabbitProducer {
 
     public void send(String message) {
         template.convertAndSend(this.queue.getName(), message);
-        System.out.println("eae");
+        System.out.println("send " + message);
     }
 }

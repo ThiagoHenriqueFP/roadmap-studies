@@ -1,0 +1,16 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  external-servers:
+    build:
+      context: .
+    ports:
+      - "3000-3099:3000"
+    deploy:
+      replicas: 1
+    depends_on:
+      - rabbitmq
