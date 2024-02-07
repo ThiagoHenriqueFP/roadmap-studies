@@ -1,0 +1,39 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3.12-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - type: bind
+        source: ./rabbitConf/rabbitmq-enabled-plugins
+        target: /etc/rabbitmq/enabled_plugins
+      - type: bind
+        source: ./rabbitConf/rabbitmq.conf
+        target: /etc/rabbitmq/rabbitmq.conf
+      - type: bind
+        source: ./rabbitConf/rabbitmq-defs.json
+        target: /etc/rabbitmq/rabbitmq-defs.json
+
+  client-service:
+    build:
+      context: client-service
+      dockerfile: Dockerfile
+    ports:
+      - "8100-8199:8100"
+    deploy:
+      replicas: 1
+    depends_on:
+      - rabbitmq
+
+
+  external-servers:
+    build:
+      context: external-servers
+      dockerfile: Dockerfile
+    ports:
+      - "3000-3099:3000"
+    deploy:
+      replicas: 1
+    depends_on:
+      - rabbitmq
