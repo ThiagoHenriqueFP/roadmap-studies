@@ -1,22 +1,39 @@
 import amqplib from "amqplib";
 import { genDescription } from "../utils/generate";
 import { IResponse } from "../types/response";
+import dotenv from "dotenv";
+dotenv.config();
 
 interface IRequest {
   cpf: String;
 }
 
-const brokerAddress = process.env.BROKER_URL;
+const brokerAddress = process.env.BROKER_URL || "amqp://localhost";
 
 (async () => {
   try {
-    await new Promise((promise) => setTimeout(promise, 4000));
     const upReqName = "update-request";
     const upResName = "update-response";
 
-    console.log(`trying to connect to broker.`);
-    const conn = await amqplib.connect("amqp://guest:guest@rabbitmq:5672");
-    console.log("connection aquired");
+    let i = 1;
+
+    let conn;
+    while (conn == null) {
+      console.log(`trying to connect to broker. Attempt ${i}`);
+      i++;
+
+      await new Promise((promise) => setTimeout(promise, 4000));
+
+      try {
+        conn = await amqplib.connect(brokerAddress);
+      } catch (err) {
+        conn = undefined;
+        if (i > 10) {
+          throw err;
+        }
+      }
+    }
+    console.log("connection acquired with " + brokerAddress);
 
     const qUpRequest = await conn.createChannel();
     const qUpResponse = await conn.createChannel();
@@ -24,10 +41,11 @@ const brokerAddress = process.env.BROKER_URL;
 
     qUpRequest.consume(upReqName, (msg) => {
       if (msg) {
+        qUpRequest.ack(msg);
         const parsedMsgContent: IRequest = JSON.parse(msg.content.toString());
         const description: IResponse = genDescription(parsedMsgContent.cpf);
 
-        qUpRequest.ack(msg);
+        console.log(parsedMsgContent);
 
         setTimeout(() => {
           qUpResponse.sendToQueue(
