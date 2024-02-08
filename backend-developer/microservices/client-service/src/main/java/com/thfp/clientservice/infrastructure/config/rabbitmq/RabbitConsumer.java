@@ -1,4 +1,4 @@
-package com.thfp.clientservice.config.rabbitmq;
+package com.thfp.clientservice.infrastructure.config.rabbitmq;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Value;

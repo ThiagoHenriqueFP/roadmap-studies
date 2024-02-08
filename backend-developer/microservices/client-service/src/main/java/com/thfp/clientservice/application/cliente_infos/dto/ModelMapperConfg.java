@@ -1,2 +1,3 @@
-package com.example.crudclientes.application.cliente_infos.dto;public class ModelMapperConfg {
+package com.thfp.clientservice.application.cliente_infos.dto;
+public class ModelMapperConfg {
 }

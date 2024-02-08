@@ -1,6 +1,6 @@
-package com.thfp.clientservice.config.scheduler;
+package com.thfp.clientservice.infrastructure.config.scheduler;
 
-import com.thfp.clientservice.config.rabbitmq.RabbitProducer;
+import com.thfp.clientservice.infrastructure.config.rabbitmq.RabbitProducer;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 

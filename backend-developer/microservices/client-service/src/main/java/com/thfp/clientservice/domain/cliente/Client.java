@@ -1,12 +1,14 @@
-package com.example.crudclientes.domain.cliente;
+package com.thfp.clientservice.domain.cliente;
 
+import com.thfp.clientservice.domain.cliente_infos.ClientInfos;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
 public class Client {
-
     @Id @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
@@ -16,6 +18,10 @@ public class Client {
     private String nome;
 
     private String email;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "clientId",referencedColumnName = "id")
+    private List<ClientInfos> clientInfos = new ArrayList<>();
 
     public UUID getId() {
         return id;

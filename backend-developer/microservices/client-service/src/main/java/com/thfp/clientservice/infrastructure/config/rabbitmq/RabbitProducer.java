@@ -1,4 +1,4 @@
-package com.thfp.clientservice.config.rabbitmq;
+package com.thfp.clientservice.infrastructure.config.rabbitmq;
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

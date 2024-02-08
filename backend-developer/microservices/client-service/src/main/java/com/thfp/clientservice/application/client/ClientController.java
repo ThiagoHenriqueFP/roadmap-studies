@@ -1,11 +1,11 @@
-package com.example.crudclientes.application.client;
+package com.thfp.clientservice.application.client;
 
-import com.example.crudclientes.application.client.dto.ClientCreateDTO;
-import com.example.crudclientes.application.client.dto.ClientResponseDTO;
-import com.example.crudclientes.application.client.dto.mapper.ClientMapper;
-import com.example.crudclientes.domain.cliente.Client;
-import com.example.crudclientes.domain.cliente.ClientService;
-import com.example.crudclientes.infrastructure.exception.ClientNotFoundException;
+import com.thfp.clientservice.application.client.dto.ClientCreateDTO;
+import com.thfp.clientservice.application.client.dto.ClientResponseDTO;
+import com.thfp.clientservice.application.client.dto.mapper.ClientMapper;
+import com.thfp.clientservice.domain.cliente.Client;
+import com.thfp.clientservice.domain.cliente.ClientService;
+import com.thfp.clientservice.infrastructure.exception.ClientNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +41,7 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> search(@PathVariable(value = "id") UUID id) throws ClientNotFoundException{
+    public ResponseEntity<Object> search(@PathVariable(value = "id") UUID id) throws ClientNotFoundException {
         Client clientRecorded = clientService.searchClientbyID(id);
         ClientResponseDTO clientResponseDTO = clientMapper.toDTO(clientRecorded);
         return ResponseEntity.status(HttpStatus.OK).body(clientResponseDTO);

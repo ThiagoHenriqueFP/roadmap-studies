@@ -1,11 +1,13 @@
-package com.example.crudclientes.domain.cliente_infos;
+package com.thfp.clientservice.domain.cliente_infos;
 
-import com.example.crudclientes.infrastructure.exception.ClientInfosNotFoundException;
+import com.thfp.clientservice.infrastructure.exception.ClientInfosNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
 public class ClientInfosService {
     private ClientInfosRepository clientInfosRepository;
 
@@ -21,7 +23,7 @@ public class ClientInfosService {
         return clientInfosRepository.findAll();
     }
 
-    public ClientInfos searchClientInfosbyID(UUID id) throws ClientInfosNotFoundException{
+    public ClientInfos searchClientInfosbyID(UUID id) throws ClientInfosNotFoundException {
         Optional<ClientInfos> opt = clientInfosRepository.findById(id);
         if (opt.isPresent()){
             return opt.get();

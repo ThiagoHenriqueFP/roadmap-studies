@@ -1,6 +1,6 @@
-package com.example.crudclientes.domain.cliente;
+package com.thfp.clientservice.domain.cliente;
 
-import com.example.crudclientes.infrastructure.exception.ClientNotFoundException;
+import com.thfp.clientservice.infrastructure.exception.ClientNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

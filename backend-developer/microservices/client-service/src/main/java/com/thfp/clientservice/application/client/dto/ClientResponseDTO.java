@@ -1,4 +1,4 @@
-package com.example.crudclientes.application.client.dto;
+package com.thfp.clientservice.application.client.dto;
 
 public class ClientResponseDTO {
 

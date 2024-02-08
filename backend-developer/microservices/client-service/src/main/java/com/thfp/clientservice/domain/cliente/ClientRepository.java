@@ -1,4 +1,4 @@
-package com.example.crudclientes.domain.cliente;
+package com.thfp.clientservice.domain.cliente;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

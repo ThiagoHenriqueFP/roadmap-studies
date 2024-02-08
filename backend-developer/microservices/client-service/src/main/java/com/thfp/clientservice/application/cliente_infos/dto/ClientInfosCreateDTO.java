@@ -1,4 +1,4 @@
-package com.example.crudclientes.application.cliente_infos.dto;
+package com.thfp.clientservice.application.cliente_infos.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;

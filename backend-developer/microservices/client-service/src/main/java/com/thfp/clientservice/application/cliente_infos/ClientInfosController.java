@@ -1,12 +1,12 @@
-package com.example.crudclientes.application.cliente_infos;
+package com.thfp.clientservice.application.cliente_infos;
 
-import com.example.crudclientes.application.client.dto.ClientResponseDTO;
-import com.example.crudclientes.application.cliente_infos.dto.ClientInfosCreateDTO;
-import com.example.crudclientes.application.cliente_infos.dto.ClientInfosResponseDTO;
-import com.example.crudclientes.application.cliente_infos.dto.mapper.ClientInfosMapper;
-import com.example.crudclientes.domain.cliente_infos.ClientInfos;
-import com.example.crudclientes.domain.cliente_infos.ClientInfosService;
-import com.example.crudclientes.infrastructure.exception.ClientInfosNotFoundException;
+
+import com.thfp.clientservice.application.cliente_infos.dto.ClientInfosCreateDTO;
+import com.thfp.clientservice.application.cliente_infos.dto.ClientInfosResponseDTO;
+import com.thfp.clientservice.application.cliente_infos.dto.mapper.ClientInfosMapper;
+import com.thfp.clientservice.domain.cliente_infos.ClientInfos;
+import com.thfp.clientservice.domain.cliente_infos.ClientInfosService;
+import com.thfp.clientservice.infrastructure.exception.ClientInfosNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,13 +44,13 @@ public class ClientInfosController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> search(@PathVariable(value = "id")UUID id) throws ClientInfosNotFoundException{
+    public ResponseEntity<Object> search(@PathVariable(value = "id")UUID id) throws ClientInfosNotFoundException {
         ClientInfos clientInfosRecorded = clientInfosService.searchClientInfosbyID(id);
         ClientInfosResponseDTO clientInfosResponseDTO = clientInfosMapper.toDTO(clientInfosRecorded);
         return ResponseEntity.status(HttpStatus.OK).body(clientInfosResponseDTO);
     }
 
-    @GetMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Object> change(@PathVariable(value = "id")UUID id,
                                          @RequestBody @Valid ClientInfosCreateDTO clientInfosCreateDTO) throws ClientInfosNotFoundException{
         ClientInfos clientInfos = clientInfosMapper.toEntity(clientInfosCreateDTO);

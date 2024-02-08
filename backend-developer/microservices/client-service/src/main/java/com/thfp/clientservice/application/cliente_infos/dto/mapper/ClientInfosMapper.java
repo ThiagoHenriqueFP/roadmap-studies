@@ -1,9 +1,9 @@
-package com.example.crudclientes.application.cliente_infos.dto.mapper;
+package com.thfp.clientservice.application.cliente_infos.dto.mapper;
 
-import com.example.crudclientes.application.client.dto.ClientResponseDTO;
-import com.example.crudclientes.application.cliente_infos.dto.ClientInfosCreateDTO;
-import com.example.crudclientes.application.cliente_infos.dto.ClientInfosResponseDTO;
-import com.example.crudclientes.domain.cliente_infos.ClientInfos;
+
+import com.thfp.clientservice.application.cliente_infos.dto.ClientInfosCreateDTO;
+import com.thfp.clientservice.application.cliente_infos.dto.ClientInfosResponseDTO;
+import com.thfp.clientservice.domain.cliente_infos.ClientInfos;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

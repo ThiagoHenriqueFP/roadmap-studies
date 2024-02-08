@@ -1,7 +1,8 @@
-package com.example.crudclientes.infrastructure.Global;
+package com.thfp.clientservice.infrastructure.Global;
 
-import com.example.crudclientes.infrastructure.exception.ClientInfosNotFoundException;
-import com.example.crudclientes.infrastructure.exception.ClientNotFoundException;
+
+import com.thfp.clientservice.infrastructure.exception.ClientInfosNotFoundException;
+import com.thfp.clientservice.infrastructure.exception.ClientNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;

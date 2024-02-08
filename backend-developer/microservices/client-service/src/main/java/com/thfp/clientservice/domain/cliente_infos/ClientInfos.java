@@ -1,26 +1,29 @@
-package com.example.crudclientes.domain.cliente_infos;
+package com.thfp.clientservice.domain.cliente_infos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.thfp.clientservice.domain.cliente.Client;
+import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
+@Table(name = "client_info")
 public class ClientInfos {
 
     @Id @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    //
+    // Client <---> ClientInfos
+    // Client ----> ClientInfos
+//    @ManyToOne
+//    private Client clientId;
+
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate DateTime;
 
     private String description;
-
-    private UUID client_id;
 
     public LocalDate getDateTime() {
         return DateTime;
@@ -38,11 +41,19 @@ public class ClientInfos {
         this.description = description;
     }
 
-    public UUID getClient_id() {
-        return client_id;
+    public UUID getId() {
+        return id;
     }
 
-    public void setClient_id(UUID client_id) {
-        this.client_id = client_id;
+    public void setId(UUID id) {
+        this.id = id;
     }
+
+//    public Client getClientId() {
+//        return clientId;
+//    }
+//
+//    public void setClientId(Client clientId) {
+//        this.clientId = clientId;
+//    }
 }
