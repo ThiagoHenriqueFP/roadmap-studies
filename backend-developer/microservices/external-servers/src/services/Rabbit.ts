@@ -42,17 +42,24 @@ const brokerAddress = process.env.BROKER_URL || "amqp://localhost";
     qUpRequest.consume(upReqName, (msg) => {
       if (msg) {
         qUpRequest.ack(msg);
-        const parsedMsgContent: IRequest = JSON.parse(msg.content.toString());
-        const description: IResponse = genDescription(parsedMsgContent.cpf);
+        try {
+          console.log(msg.content.toString());
+          const parsedMsgContent: IRequest = JSON.parse(msg.content.toString());
+          const description: IResponse = genDescription(parsedMsgContent.cpf);
+          console.log(description)
 
-        console.log(parsedMsgContent);
-
-        setTimeout(() => {
-          qUpResponse.sendToQueue(
-            upResName,
-            Buffer.from(JSON.stringify(description))
-          );
-        }, Math.random() * 1000);
+          // get random seconds to delay the response
+          const time = Math.random() * 100000;
+          setTimeout(() => {
+            qUpResponse.sendToQueue(
+                upResName,
+                Buffer.from(JSON.stringify(description))
+            );
+          }, time);
+        } catch (error) {
+          if (error instanceof Error)
+            console.log("discarding message because: " + error.message);
+        }
       }
     });
   } catch (error) {
