@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -21,16 +22,18 @@ public class ClientInfos {
 //    private Client clientId;
 
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private LocalDate DateTime;
+    private LocalDateTime date;
 
     private String description;
 
-    public LocalDate getDateTime() {
-        return DateTime;
+    public ClientInfos() {}
+
+    public LocalDateTime getDateTime() {
+        return date;
     }
 
-    public void setDateTime(LocalDate dateTime) {
-        DateTime = dateTime;
+    public void setDateTime(LocalDateTime dateTime) {
+        date = dateTime;
     }
 
     public String getDescription() {
@@ -56,4 +59,11 @@ public class ClientInfos {
 //    public void setClientId(Client clientId) {
 //        this.clientId = clientId;
 //    }
+
+
+    // constructor to facilitate create new instances
+    public ClientInfos(LocalDateTime dateTime, String description) {
+        this.date = dateTime;
+        this.description = description;
+    }
 }

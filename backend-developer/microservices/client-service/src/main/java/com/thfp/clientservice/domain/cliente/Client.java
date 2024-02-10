@@ -55,6 +55,14 @@ public class Client {
         this.email = email;
     }
 
+    public List<ClientInfos> getClientInfos() {
+        return clientInfos;
+    }
+
+    public void setClientInfos(List<ClientInfos> clientInfos) {
+        this.clientInfos = clientInfos;
+    }
+
     public Client(String cpf, String nome, String email) {
         this.cpf = cpf;
         this.nome = nome;
