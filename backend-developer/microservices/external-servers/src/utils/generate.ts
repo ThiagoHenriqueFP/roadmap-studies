@@ -7,7 +7,6 @@ function genDateWithTime(): Date {
   const year = salt + 10;
 
   const fullDate = `${month}-${day}-20${year}`;
-  console.log(fullDate);
 
   return new Date(fullDate);
 }

@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start-prod": "npx --env-file=.env ts-node src/server.ts",
-    "dev": "npx ts-node-dev --respawn --inspect=4321 src/server.ts"
+    "dev": "npx ts-node-dev --env-file=.env.dev --respawn --inspect=4321 src/server.ts"
   },
   "dependencies": {
     "amqplib": "^0.10.3",
