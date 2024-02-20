@@ -1,9 +1,21 @@
 services:
   rabbitmq:
-    image: rabbitmq:3.12-management
+    image: rabbitmq:3.12-alpine
     ports:
       - "5672:5672"
       - "15672:15672"
+    volumes:
+      - type: bind
+        source: ./rabbitConf/rabbitmq-enabled-plugins
+        target: /etc/rabbitmq/enabled_plugins
+      - type: bind
+        source: ./rabbitConf/rabbitmq.conf
+        target: /etc/rabbitmq/rabbitmq.conf
+      - type: bind
+        source: ./rabbitConf/rabbitmq-defs.json
+        target: /etc/rabbitmq/rabbitmq-defs.json
+    networks:
+      - inter-nodes
 
   discovery-server:
     container_name: "eureka"
