@@ -5,6 +5,10 @@ For this project i will enter in the microservices world, creating some projects
 A insurance company want to manage your clients, they need to store customer data in a service and consume a service that allow consulting additional data from a single customer, since this additional consulting is in third-party servers, a time and fault tolerant service must be implemented. This third-party servers are another insurance company systems, all of the data isn't structured and the system must lead with theses data.
 
 ## Architecture
+
+### gateway and discovery server
+The gateway will act as entrypoint to this system and will redirect to the correct service, using the eureka server to discover services and redirect a request.
+
 ### client service
 Must store clients basic data, such as first and last name, email, insurance type etc. Will be used to perform CRUD operations against client entity.
 
@@ -32,4 +36,9 @@ This service is a "black box" full of "servers" that will display independent in
 **gateway:**
 - Java 17
 - Spring cloud gateway
+
+## TODO
+ - Implement auth service
+ - Implement circuit breakers
+ - Implement a single view actuator page
 
