@@ -8,22 +8,22 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class ClientInfosService {
-    private ClientInfosRepository clientInfosRepository;
+public class clientsInfosService {
+    private clientsInfosRepository clientInfosRepository;
 
-    public ClientInfosService(ClientInfosRepository clientInfosRepository){
+    public clientsInfosService(clientsInfosRepository clientInfosRepository){
         this.clientInfosRepository = clientInfosRepository;
     }
 
-    public ClientInfos save(ClientInfos clientInfos){
+    public clientsInfos save(clientsInfos clientInfos){
         return clientInfosRepository.save(clientInfos);
     }
 
-    public List<ClientInfos> searchAll(){
+    public List<clientsInfos> searchAll(){
         return clientInfosRepository.findAll();
     }
 
-    public ClientInfos searchClientInfosbyID(UUID id) throws ClientInfosNotFoundException {
+    public clientsInfos searchClientInfosbyID(UUID id) throws ClientInfosNotFoundException {
         Optional<ClientInfos> opt = clientInfosRepository.findById(id);
         if (opt.isPresent()){
             return opt.get();
@@ -32,15 +32,15 @@ public class ClientInfosService {
         }
     }
 
-    public ClientInfos changeClientInfos(UUID id, ClientInfos clientInfos) throws ClientInfosNotFoundException{
-        ClientInfos clientInfosRecorded = searchClientInfosbyID(id);
+    public clientsInfos changeClientInfos(UUID id, clientsInfos clientInfos) throws ClientInfosNotFoundException{
+        clientsInfos clientInfosRecorded = searchClientInfosbyID(id);
         clientInfosRecorded.setDescription(clientInfos.getDescription());
         clientInfosRecorded.setDateTime(clientInfos.getDateTime());
         return clientInfosRepository.save(clientInfosRecorded);
     }
 
     public void deletClientInfos(UUID id) throws ClientInfosNotFoundException{
-        ClientInfos clientInfos = searchClientInfosbyID(id);
+        clientsInfos clientInfos = searchClientInfosbyID(id);
         clientInfosRepository.delete(clientInfos);
     }
 }

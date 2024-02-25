@@ -12,24 +12,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class ClientInfosMapper {
+public class clientsInfosMapper {
 
     @Autowired
-    private ModelMapper mapper;
+    private modelMapper mapper;
 
-    public ClientInfos toEntity(ClientInfosCreateDTO dto){
-        ClientInfos entity = mapper.map(dto, ClientInfos.class);
+    public clientsInfos toEntity(clientsInfosCreateDTO dto){
+        clientsInfos entity = mapper.map(dto, ClientInfos.class);
         return entity;
     }
 
-    public ClientInfosResponseDTO toDTO(ClientInfos entity){
-        ClientInfosResponseDTO dto = mapper.map(entity, ClientInfosResponseDTO.class);
+    public clientsInfosResponseDTO toDTO(clientsInfos entity){
+        clientsInfosResponseDTO dto = mapper.map(entity, clientsInfosResponseDTO.class);
         return dto;
     }
 
-    public List<ClientInfosResponseDTO> toDTO(List<ClientInfos> clientsInfos){
-        return clientsInfos.stream()
-                .map(clientInfos -> toDTO(clientInfos))
+    public List<clientsInfosResponseDTO> toDTO(List<clientsInfos> clientInfos){
+        return clientInfos.stream()
+                .map(clientsInfos -> toDTO(clientsInfos))
                 .collect(Collectors.toList());
     }
 }

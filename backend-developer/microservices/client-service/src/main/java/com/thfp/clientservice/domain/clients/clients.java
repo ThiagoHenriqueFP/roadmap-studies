@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-public class Client {
+public class clients {
     @Id @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
