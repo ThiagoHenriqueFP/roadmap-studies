@@ -1,6 +1,6 @@
 package com.thfp.clientservice.application.cliente_infos.dto;
 
-public class clientsInfosResponseDTO {
+public class ClientInfosResponseDTO {
 
     private String id;
 

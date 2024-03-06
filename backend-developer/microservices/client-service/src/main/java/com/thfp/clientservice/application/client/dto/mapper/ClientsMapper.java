@@ -11,22 +11,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class clientsMapper {
+public class ClientsMapper {
 
     @Autowired
     private ModelMapper mapper;
 
-    public clients toEntity(ClientCreateDTO dto){
-        clients entity = mapper.map(dto, Client.class);
+    public Clients toEntity(ClientsCreateDTO dto){
+        Clients entity = mapper.map(dto, Clients.class);
         return entity;
     }
 
-    public clientsResponseDTO toDTO(Client entity){
-        clientsResponseDTO dto = mapper.map(entity, clientsResponseDTO.class);
+    public ClientsResponseDTO toDTO(Clients entity){
+        ClientsResponseDTO dto = mapper.map(entity, ClientsResponseDTO.class);
         return dto;
     }
 
-    public List<clientsResponseDTO> toDTO(List<Client> clients){
+    public List<ClientsResponseDTO> toDTO(List<Clients> clients){
         return clients.stream()
                 .map(client -> toDTO(client))
                 .collect(Collectors.toList());

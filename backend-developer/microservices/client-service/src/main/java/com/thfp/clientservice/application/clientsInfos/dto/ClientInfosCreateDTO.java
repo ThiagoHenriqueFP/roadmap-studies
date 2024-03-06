@@ -5,7 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
-public class clientsInfosCreateDTO {
+public class ClientInfosCreateDTO {
 
     @NotBlank(message = "a data deve ser informada")
     @DateTimeFormat(pattern = "dd/MM/yyyy")

@@ -8,39 +8,39 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class clientsService {
-    private clientsRepository clientRepository;
+public class ClientsService {
+    private ClientsRepository clientRepository;
 
-    public clientsService(clientsRepository clientRepository) {
+    public ClientsService(ClientsRepository clientRepository) {
         this.clientRepository = clientRepository;
     }
 
-    public clients save(clients client){
+    public Clients Save(Clients client){
         return clientRepository.save(client);
     }
 
-    public List<clients> searchAll(){
+    public List<Clients> SearchAll(){
         return clientRepository.findAll();
     }
 
-    public clients searchClientbyID(UUID id) throws ClientNotFoundException{
-        Optional<clients> opt = clientsRepository.findById(id);
+    public Clients SearchClientbyID(UUID id) throws ClientsNotFoundException{
+        Optional<Clients> opt = clientRepository.findById(id);
         if (opt.isPresent()){
             return opt.get();
         } else {
-            throw new ClientNotFoundException("Cliente com id: " + id + " não existe");
+            throw new ClientsNotFoundException("Cliente com id: " + id + " não existe");
         }
     }
 
-    public clients changeClient(UUID id, clients client) throws clientsNotFoundException{
-        clients clientRecorded = searchClientbyID(id);
+    public Clients ChangeClient(UUID id, Clients client) throws ClientsNotFoundException{
+        Clients clientRecorded = searchClientbyID(id);
         clientRecorded.setEmail(client.getEmail());
         clientRecorded.setNome(client.getNome());
         return clientsRepository.save(clientRecorded);
     }
 
-    public void deletClient(UUID id) throws clientsNotFoundException{
-        clients client = searchClientbyID(id);
+    public void DeletClient(UUID id) throws ClientsNotFoundException{
+        Clients client = searchClientbyID(id);
         clientsRepository.delete(client);
     }
 }
